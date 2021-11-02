@@ -1,3 +1,12 @@
+# folders
+build/*
+test/test_build/*
+
+## exclude from ignore ################
+!test/test_build/clean_tests.sh
+!test/test_build/run_tests.sh
+#######################################
+#
 # Prerequisites
 *.d
 
