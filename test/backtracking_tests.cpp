@@ -5,7 +5,6 @@ extern "C"
 	#include "../includes/backtracking.h"
 }
 
-
 SCENARIO("Backtracking algo")
 {
 	GIVEN("Constraints")
@@ -13,8 +12,6 @@ SCENARIO("Backtracking algo")
 			
 		WHEN("data initialized")
 		{
-			// init_game_with_time_config(time_expected);
-
 			THEN("Check algo successful")
 			{
 				bool isSuccess = backtracking();

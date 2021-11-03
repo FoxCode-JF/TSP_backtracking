@@ -1,7 +1,7 @@
+#include "doublyLinkedList.h"
 #include <stdio.h>
 
-int main(void)
-{
-	printf("HELLO\n");
+int main(int argc, char const *argv[])
+{	
 	return 0;
 }

@@ -1,12 +1,13 @@
 SRCDIR		= src
 INCDIR  	= includes
-OBJDIR		= build/obj
-BINDIR		= build/bin
+BUILDDIR	= build
+OBJDIR		= $(BUILDDIR)/obj
+BINDIR		= $(BUILDDIR)/bin
 TESTDIR		= test
 
 CC			= gcc
 TARGET	= backtracking
-CFLAGS	= -Wall -Wextra #-pedantic -g #-I$(INCLUDES) #-O0 
+CFLAGS	= -Wall -Wextra -pedantic -g -O0 -I$(INCDIR) 
 LFLAGS	=
 
 SRC	:= $(wildcard $(SRCDIR)/*.c)
@@ -40,12 +41,19 @@ remove:
 	$(REMOVE) $(OBJECTS)
 	@echo "Deleted $<"
 
+.PHONY: run
 run:
 	$(BINDIR)/$(TARGET)
 
+.PHONY: debug
+debug:
+	gdb $(BINDIR)/$(TARGET)
+
+.PHONY: run_tests
 run_tests:
 	$(TESTDIR)/test_build/run_tests.sh
 
+.PHONY: clean_tests
 clean_tests:
 	$(TESTDIR)/test_build/clean_tests.sh	
 
@@ -67,7 +75,6 @@ exe64: clean all
 .PHONY: all
 all: $(BINDIR)/$(TARGET)
 
-.PHONY: run
 
 # 	sudo apt-get install mingw-w64
 # Then you can create 32-bit Windows executable with:

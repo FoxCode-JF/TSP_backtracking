@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.10)
 
-project(dummy_tests)
+project(backtracking_tests)
 
 #set(CMAKE_BUILD_TYPE Release)
 set(CMAKE_BUILD_TYPE Debug)
@@ -27,11 +27,13 @@ set(CPP_SRCS
 
 set(C_SRCS
 	../src/backtracking.c
+	../src/doublyLinkedList.c
 )
 
 set(CPP_TEST_SRCS
 	main.cpp
 	backtracking_tests.cpp
+	doublyLinkedList_tests.cpp
 )
 
 set(C_TEST_SRCS
