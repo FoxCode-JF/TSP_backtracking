@@ -28,12 +28,14 @@ set(CPP_SRCS
 set(C_SRCS
 	../src/backtracking.c
 	../src/doublyLinkedList.c
+	../src/graph.c
 )
 
 set(CPP_TEST_SRCS
 	main.cpp
 	backtracking_tests.cpp
 	doublyLinkedList_tests.cpp
+	# graph_tests.cpp
 )
 
 set(C_TEST_SRCS

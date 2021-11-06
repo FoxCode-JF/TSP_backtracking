@@ -12,9 +12,43 @@
  */
 
 
+#include <string.h>
 #include "backtracking.h"
+static Graph_t* map1();
 
-bool backtracking(/*int startCity, void* f_ptr_constraints, int* adj_list*/)
+Graph_t* generateAdjacencyList(adjListGenMethod_t method)
+{
+	switch (method)
+	{
+	case RANDOM:
+		
+		break;
+	case USER_INPUT:
+
+		break;
+	case CHOOSE_PREDEFINED:
+		map1();
+		break;
+	default:
+		break;
+	}
+	return NULL;
+}
+
+bool backtracking(int startCity, void* f_ptr_constraints, Graph_t* graph, Node_t* list_assignedVars)
 {
 	return false;
 }
+
+static Graph_t* map1()
+{
+	int numOfVertices = 5;
+
+	char* names[5] = {"A", "B", "C", "D", "E"};
+	Graph_t* graph = createGraph(numOfVertices, names);
+	printGraph(graph);
+
+	addEdge(graph, 2, "B", 2);
+	printGraph(graph);
+}
+

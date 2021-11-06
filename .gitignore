@@ -1,6 +1,8 @@
 # folders
 build/*
 test/test_build/*
+doc/*
+.vscode/*
 
 ## exclude from ignore ################
 !test/test_build/clean_tests.sh
