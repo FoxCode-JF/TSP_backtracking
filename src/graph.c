@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include "graph.h"
 
 /**
@@ -46,17 +47,19 @@ void printGraph(Graph_t* graph)
  * 
  * @param graph 
  */
-void deleteGraph(Graph_t* graph)
+void deleteGraph(Graph_t** graph)
 {
-    for (size_t i = 0; i < graph->numOfVertices; i++) 
+    for (size_t i = 0; i < (*graph)->numOfVertices; i++) 
     {
-        Node_t* tmp_head = graph->adjLists_head[i];
+        Node_t* tmp_head = (*graph)->adjLists_head[i];
+        Node_t* tmp_tail = (*graph)->adjLists_tail[i];
         
         printf("\n Vertex %d\n: ", i);
-        deleteList(&tmp_head, NULL);
+        deleteList(&tmp_head, &tmp_tail);
         printf("\n");
-        free(graph);
     }
+    free(*graph);
+    graph = NULL;
 }
 
 /**

@@ -15,7 +15,7 @@ typedef struct Graph
 Graph_t* createGraph(int numOfVertices, char** names);
 void addEdge(Graph_t* graph, int vertexIdx, char* neighbourName, int neighbourCost);
 void printGraph(Graph_t* graph);
-void deleteGraph(Graph_t* graph);
+void deleteGraph(Graph_t** graph);
 
 #endif // GRAPH_H
 

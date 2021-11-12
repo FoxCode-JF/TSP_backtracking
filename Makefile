@@ -7,7 +7,7 @@ TESTDIR		= test
 
 CC			= gcc
 TARGET	= backtracking
-CFLAGS	= -Wall -Wextra -pedantic -g -O0 -I$(INCDIR) 
+CFLAGS	= -Wall -Wextra -pedantic -ggdb -O0 -I$(INCDIR) 
 LFLAGS	=
 
 SRC	:= $(wildcard $(SRCDIR)/*.c)
@@ -55,7 +55,11 @@ run_tests:
 
 .PHONY: clean_tests
 clean_tests:
-	$(TESTDIR)/test_build/clean_tests.sh	
+	$(TESTDIR)/test_build/clean_tests.sh
+
+.PHONY: debug_tests
+debug_tests:
+	gdb $(TESTDIR)/test_build/backtracking_tests
 
 .PHONY: exe32 exe64
 exe32: CC := i686-w64-mingw32-gcc

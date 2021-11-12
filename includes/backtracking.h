@@ -2,7 +2,6 @@
 #define BACKTRACKING_H
 
 #include <stdbool.h>
-// #include "doublyLinkedList.h"
 #include "graph.h"
 
 typedef enum adjListGenMethod
@@ -13,12 +12,7 @@ typedef enum adjListGenMethod
 }adjListGenMethod_t;
 
 Graph_t* generateAdjacencyList(adjListGenMethod_t method);
-bool backtracking(int startCity, void* f_ptr_constraints, Graph_t* graph, Node_t* list_assignedVars);
-bool isComplete();
-bool isConsistent();
-void getUnassignedVars();
-void addToAssigned();
-
+bool backtracking(char* startCity, /* void* f_ptr_constraints, */ Graph_t* graph, Node_t** list_assignedVars, uint32_t currentCost, Node_t** currentBestPath, uint32_t minCost);
 
 #endif /*BACKTRACKING_H*/
 

@@ -18,6 +18,8 @@ typedef struct Node
 Node_t* addNodeAtHead(Node_t **head, LIST_DATA_TYPE data, char* name);
 void addNodeAtIndex(Node_t **head, LIST_DATA_TYPE data, uint16_t index, char* name);
 Node_t* addNodeAtTail(Node_t **tail, LIST_DATA_TYPE data, char* name);
+uint16_t elementsCount(Node_t* head);
+Node_t* copyList(Node_t* src_head, Node_t** dst_head);
 void deleteList(Node_t **head, Node_t **tail);
 void deleteNodeAtHead(Node_t **head);
 void deleteNodeAtIndex(Node_t **head, uint16_t index);

@@ -50,7 +50,7 @@ Node_t* addNodeAtHead(Node_t **head, LIST_DATA_TYPE data, char* name)
 void addNodeAtIndex(Node_t **head, LIST_DATA_TYPE data, uint16_t index, char* name)
 {
 	Node_t *current = *head;
-	Node_t *newNode = (Node_t*)malloc(sizeof(Node_t*));
+	Node_t *newNode = (Node_t*)malloc(sizeof(Node_t));
 
 	newNode->data = data;
 	newNode->name = name;
@@ -76,7 +76,7 @@ void addNodeAtIndex(Node_t **head, LIST_DATA_TYPE data, uint16_t index, char* na
  */
 Node_t* addNodeAtTail(Node_t **tail, LIST_DATA_TYPE data, char* name)
 {
-	Node_t *newNode = (Node_t*)malloc(sizeof(Node_t*));
+	Node_t *newNode = (Node_t*)malloc(sizeof(Node_t));
 	newNode->next = NULL;
 	newNode->prev = NULL;
 
@@ -116,12 +116,11 @@ void deleteList(Node_t **head, Node_t **tail)
 		current = current->next;
 		deleteNode(&tmp);
 	}
-
+	
 	*head = NULL;
 	*tail = NULL;
-	
 
-	if(*head == NULL)
+	if(*head == NULL && *tail == NULL)
 	{
 		printf("List was erased successfully...\n");
 	}
@@ -215,7 +214,49 @@ void printList(Node_t *head)
 	printf("\n");
 }
 
+/**
+ * @brief Counts elements in the lis
+ * 
+ * @param list_head Pointer to the head of the list
+ * @return (uint16_t) Number of nodes in the list 
+ */
+uint16_t elementsCount(Node_t* list_head)
+{
+	Node_t* current = list_head;
+	uint16_t cnt = 0;
+	while (current != NULL)
+	{
+		current = current->next;
+		cnt++;
+	}
+	return cnt;
+}
+
+/**
+ * @brief Copies contents of one list to another;
+ * 
+ * @param src_head Head of the source list.
+ * @param dst_head head of the destination list.
+ * @return (Node_t*) Returns tail pointer of destination list. 
+ */
+Node_t* copyList(Node_t* src_head, Node_t** dst_head)
+{
+	Node_t* src_current = src_head;
+	Node_t* dst_tail;
+
+	dst_tail = addNodeAtHead(dst_head, src_head->data, src_head->name);
+	src_current = src_current->next;
+
+	while (src_current != NULL)
+	{
+		addNodeAtTail(&dst_tail, src_current->data, src_current->name);
+		src_current = src_current->next;
+	}
+	return dst_tail;
+}
+
 static void deleteNode(Node_t **node)
 {
 	free(*node);
+	*node = NULL;
 }
