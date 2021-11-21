@@ -23,6 +23,7 @@ Node_t* copyList(Node_t* src_head, Node_t** dst_head);
 void deleteList(Node_t **head, Node_t **tail);
 void deleteNodeAtHead(Node_t **head);
 void deleteNodeAtIndex(Node_t **head, uint16_t index);
+void deleteNodeWithName(Node_t **head, char* name);
 void deleteNodeAtTail(Node_t **head, Node_t **tail);
 void printList(Node_t *head);
 

@@ -13,16 +13,16 @@ static void deleteNode(Node_t **node);
  */
 Node_t* addNodeAtHead(Node_t **head, LIST_DATA_TYPE data, char* name)
 {
-	// Allocate memory for a new node
+	/* Allocate memory for a new node */
 	Node_t *newNode = (Node_t*)malloc(sizeof(Node_t));
 	newNode->next = NULL;
 	newNode->prev = NULL;
 
-	// Copy data to allocated
+	/* Copy data to allocated */
 	newNode->data = data;
 	newNode->name = name;
 
-	// If list is empty make a new node at head and point tail to head, else add newnode to existing list
+	/* If list is empty make a new node at head and point tail to head, else add newnode to existing list */
 	if(*head == NULL)
 	{
 		Node_t *tail;
@@ -55,7 +55,7 @@ void addNodeAtIndex(Node_t **head, LIST_DATA_TYPE data, uint16_t index, char* na
 	newNode->data = data;
 	newNode->name = name;
 
-	// go to node of the list where new node will be placed
+	/* go to node of the list where new node will be placed */
 	for (LIST_DATA_TYPE i = 0; i < index - 1; ++i)
 	{
 		current = current->next;
@@ -76,7 +76,7 @@ void addNodeAtIndex(Node_t **head, LIST_DATA_TYPE data, uint16_t index, char* na
  */
 Node_t* addNodeAtTail(Node_t **tail, LIST_DATA_TYPE data, char* name)
 {
-	Node_t *newNode = (Node_t*)malloc(sizeof(Node_t));
+	Node_t *newNode = malloc(sizeof(Node_t));
 	newNode->next = NULL;
 	newNode->prev = NULL;
 
@@ -118,7 +118,12 @@ void deleteList(Node_t **head, Node_t **tail)
 	}
 	
 	*head = NULL;
-	*tail = NULL;
+
+	if (*tail != NULL)
+	{
+		*tail = NULL;
+	}
+	
 
 	if(*head == NULL && *tail == NULL)
 	{
@@ -156,7 +161,7 @@ void deleteNodeAtIndex(Node_t **head, uint16_t index)
 	Node_t *current = *head;
 	Node_t *tmp;
 
-	// go to node of the list where node will be deleted
+	/* go to node of the list where node will be deleted */
 	for (int i = 0; i < index - 1; ++i)
 	{
 		current = current->next;
@@ -166,6 +171,44 @@ void deleteNodeAtIndex(Node_t **head, uint16_t index)
 	current->next = current->next->next;
 
 	deleteNode(&tmp);
+}
+
+/**
+ * @brief Deletes node with specific name
+ * 
+ * @param head 
+ * @param name 
+ */
+void deleteNodeWithName(Node_t **head, char* name)
+{
+	Node_t *current = *head;
+	Node_t *tmp;
+
+
+	if (current != NULL)
+	{
+		/* go to node of the list where node will be deleted */
+		while (current != NULL && strcmp(current->name, name) != 0)
+		{
+			current = current->next;
+		}
+		printf("currentnode to delete:%s", current->name);
+		if (current != NULL)
+		{
+
+			tmp = current;
+			if (current->prev != NULL)
+			{
+				current->prev->next = current->next;
+			} else
+			{
+				(*head) = (*head)->next;
+			}
+			
+			deleteNode(&tmp);
+		}
+	}
+	
 }
 
 /**
@@ -200,7 +243,7 @@ void printList(Node_t *head)
 	if(head == NULL)
 	{
 		fprintf(stderr, "List is empty...\n");
-		exit(1);
+		// exit(1);
 	}
 
 	Node_t *current = head;

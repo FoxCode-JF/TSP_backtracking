@@ -11,13 +11,12 @@ int main(int argc, char const *argv[])
 
 	Node_t* expectedResult_head = expected_backtrackingResult();
 	Graph_t* test_graph = test_map1();
-	Node_t** assignedVars;
+	// Node_t** assignedVars;
 	Node_t** obtainedResult_head;
 
-	*assignedVars = NULL;
+	// *assignedVars = NULL;
 	*obtainedResult_head = NULL;
-
-	bool isSuccess = backtracking("A", test_graph, assignedVars, 0, obtainedResult_head, 0);
+	bool isSuccess = backtracking("A", test_graph, NULL, 0, obtainedResult_head);
 	bool isSolutionBest = true;
 
 	printf("EXPECTED:\n");
@@ -27,13 +26,13 @@ int main(int argc, char const *argv[])
 	printGraph(graph);
 	deleteGraph(&graph);
 	
-	while (expectedResult_head != NULL)
-	{
-		if (expectedResult_head->data != (*obtainedResult_head)->data && strcmp(expectedResult_head->name, (*obtainedResult_head)->name) != 0)
-		{
-			isSolutionBest = false;
-		}
-	}
+	// while (expectedResult_head != NULL)
+	// {
+	// 	if (expectedResult_head->data != (*obtainedResult_head)->data && strcmp(expectedResult_head->name, (*obtainedResult_head)->name) != 0)
+	// 	{
+	// 		isSolutionBest = false;
+	// 	}
+	// }
 
 	return 0;
 }
@@ -76,7 +75,8 @@ static Graph_t* test_map1()
 	addEdge(graph, 2, "E", 6);
 	
 	addEdge(graph, 3, "A", 2);
-	addEdge(graph, 3, "B", 2);
+	//addEdge(graph, 3, "B", 2);
+	addEdge(graph, 3, "B", 5);
 	addEdge(graph, 3, "C", 4);
 	addEdge(graph, 3, "E", 6);
 	

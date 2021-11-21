@@ -12,7 +12,7 @@ typedef enum adjListGenMethod
 }adjListGenMethod_t;
 
 Graph_t* generateAdjacencyList(adjListGenMethod_t method);
-bool backtracking(char* startCity, /* void* f_ptr_constraints, */ Graph_t* graph, Node_t** list_assignedVars, uint32_t currentCost, Node_t** currentBestPath, uint32_t minCost);
+bool backtracking(char* startCity, Graph_t* graph, Node_t* list_assignedVarsss, uint32_t currentCost, Node_t** currentBestPath);
 
 #endif /*BACKTRACKING_H*/
 
